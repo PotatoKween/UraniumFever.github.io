@@ -12,6 +12,18 @@
         }
         .wires{
             width: 100%;
+            display: block;
+        }
+        .buttons{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+        }
+        .btn{
+            padding: 20px;
+            width: 150px;
+            font-weight: bold;
         }
     </style>
     
@@ -20,7 +32,13 @@
 <body>
     <div class="container-fluid">
         <img src="wires.jpg" alt="wires" class="wires">
+
+        <div class="buttons">
+        <button class="btn btn-warning left">←</button>
+        <button class="btn btn-warning middle" onclick="Manual.html">MANUAL</button>
+        <button class="btn btn-warning right" onnclick="Button.html">→</button>
+        </div>
+
     </div>
 </body>
 </html>
-
