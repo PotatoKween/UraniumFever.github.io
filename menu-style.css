@@ -24,7 +24,7 @@
 }
 
 .menu-btn {
-    
+    display: block;
     padding: 25px 20px;
     font-size: 1.5rem;
     background-color: #141414; 
@@ -87,3 +87,4 @@
 #modal-body { line-height: 1.6; font-size: 1.1rem; }
 
 hr { border: 1px solid #e3c452; margin: 20px 0; }
+
