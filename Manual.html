@@ -8,8 +8,8 @@
 
     <title>-Pilot Manual-</title>
 
-    <link rel="stylesheet" href="./stylemanual.css">
-    <script src="./jsmanual.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./main.js" defer></script>
     <script src="https://kit.fontawesome.com/9d41ed0043.js" crossorigin="anonymous"></script>
 
 </head>
@@ -91,16 +91,28 @@
             </div>
             <div class="back">
                 <div id="b4" class="back-content">
-                    <h2>SECTION VII: VERRONE SIGNAL EXTRACTION</h2>
+    <h2>SECTION VII: VERRONE SIGNAL EXTRACTION</h2>
 
-                    <h6>Interpret the pulse signal as International Morse Code. Once the three-letter city code is identified, input the corresponding frequency into the dial.</h6>
-                
-                    <h6>.-. ... / (HAS): 3.505 MHz</h6>
-                    <h6>...- . .-. / (VER): 3.522 MHz</h6>
-                    <h6>..-. .- .-. / (FAR): 3.555 MHz</h6>
-                    <h6>-. ..- -.- / (NUK): 3.600 MHz</h6>
-                    <h6>-- . -.. / (MED): 3.512 MHz</h6>
-                </div>
+    <h6>Interpret pulse signals as International Morse Code. Locate the 3-character sequence to identify the current neutralization sector.</h6>
+    
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; background: #f0f0f0; padding: 10px; border: 1px solid #ccc; font-family: monospace; font-size: 0.75rem; margin-bottom: 15px;">
+        <div>A .-<br>B -...<br>C -.-.<br>D -..<br>E .<br>F ..-.<br>G --.<br>H ....</div>
+        <div>I ..<br>J .---<br>K -.-<br>L .-..<br>M --<br>N -.<br>O ---<br>P .--.</div>
+        <div>Q --.-<br>R .-. <br>S ...<br>T -<br>U ..-<br>V ...-<br>W .--<br>X -..-</div>
+    </div>
+
+    <h4 style="border-bottom: 1px solid #2c3e50; margin-bottom: 10px;">AUTHORIZED SECTOR IDENTIFIERS</h4>
+    
+    <div style="font-family: monospace; font-size: 0.9rem; line-height: 1.8;">
+        <strong>[FORGE] HAS:</strong> .... / .- / ... <br>
+        <strong>[FLAME] VER:</strong> ...- / . / .-. <br>
+        <strong>[GHOST] FAR:</strong> ..-. / .- / .-. <br>
+        <strong>[NUKES] NUK:</strong> -. / ..- / -.- <br>
+        <strong>[WARDS] MED:</strong> -- / . / -..
+    </div>
+
+    <h6 style="margin-top: 15px; font-style: italic; color: #666;">Note: Signals failing to match these hashes indicate Farnesian interference. Stay the course.</h6>
+</div>
             </div>
         </div>
         <div id="p5" class="paper">
