@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uranium Fever - Main Menu</title>
+    <link rel="stylesheet" href="menu-style.css">
+</head>
+<body>
+
+    <div id="main-menu" class="menu-container">
+    <div class="button-layer">
+        <button id="start-mission" class="menu-btn">START MISSION</button>
+        <button id="open-brief" class="menu-btn">MISSION BRIEF</button>
+        <button id="open-credits" class="menu-btn">PERSONNEL RECORD</button>
+    </div>
+
+    <div id="info-modal" class="modal-overlay">
+    <div class="modal-content">
+        <span id="close-modal" class="close-btn">&times;</span>
+        <h2 id="modal-title">TITLE</h2>
+        <hr>
+        <div id="modal-body">
+            </div>
+    </div>
+</div>
+</div>
+
+    <script>
+    const modal = document.getElementById('info-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+    const closeBtn = document.getElementById('close-modal');
+
+    const content = {
+        brief: {
+    title: "Verrone-Hasyth Strategic Briefing",
+    text: `<b>OPERATIONAL OVERVIEW:</b><br>
+           As a Level 4 Junior Aerial Respondee, you are tasked with the high-altitude transport of 'Medical Neutralization' canisters. The payload is volatile and sensitive to atmospheric pressure.<br><br>
+           
+           <b>CORE OBJECTIVE:</b><br>
+           Maintain the integrity of the aircraft and cargo. In the event of a <i>Criticality Alarm</i>, you must utilize the onboard Pilot Manual to manually stabilize the diffusion manifolds. The manual is your only lifeline; ignore it, and the isotopes will not be the only thing 'pruned.'<br><br>
+           
+           <b>V-H ALLIANCE DIRECTIVE:</b><br>
+           Focus on your dials. Ignore the static on the comms. The voices of the Farnesian ghosts are a symptom of the 'Fever,' not a reality of the flight. Your loyalty is your oxygen.<br><br>
+           <i>"Hasyth is the Forge. Verrone is the Flame. You are the Fuel."</i>`
+        },
+        records: {
+            title: "Personnel Records",
+            text: "<b>Lead Developer and Programmer:</b> Alexei Bongalon<br><b>Art & Design:</b> Rolene Ruiz<br><b>Secondary Programmer:</b> Samantha Mendoza<br><br>Developed for our comsci SA. This game was heavily inspired by Keep Talking And Nobody Explodes and Defusal. <br> Links to both games: <br> Defusal: https://defusal.fandom.com/wiki/Defusal_Wiki <br> Keep Talking And Nobody Explodes: https://keeptalkinggame.com/ <br><br> Token of appreciation for checking out our game, here's a coded cheat sheet!<br>Wires: Rqh ilvk, wzr ilvk, wkuhh ilvk, uhg ilvk, eoxh ilvk, juhhq ilvk, wkh zlvhvw ilvkhupdq fdwfkhv wkh juhhq ilvk dqg wkh irro fdwfkhv wkh rwkhu ilvk. (Hint: Et tu, Brute?) <br> On the subject of Morse Code: The motto was just a LIE."
+        }
+    };
+
+    document.getElementById('open-brief').onclick = function() {
+        modalTitle.innerText = content.brief.title;
+        modalBody.innerHTML = content.brief.text;
+        modal.style.display = "flex";
+    }
+
+    document.getElementById('open-credits').onclick = function() {
+        modalTitle.innerText = content.records.title;
+        modalBody.innerHTML = content.records.text;
+        modal.style.display = "flex";
+    }
+
+    closeBtn.onclick = () => modal.style.display = "none";
+    window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; }
+</script>
+</body>
+</html>
