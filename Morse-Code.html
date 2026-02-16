@@ -3,60 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wires</title>
+    <title>Uranium Fever</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
 
     <style>
-        body{
-            background-color: black;
-        }
-        .container-fluid{
-            position: relative;
-        }
-        h1{
+        body { background-color: black; margin: 0; }
+        .container-fluid { position: relative; }
+        h1 {
             text-align: center;
             color: white;
             font-family: 'Orbitron';
             font-size: 45px;
+            margin-top: 20px;
         }
-        .morse{
+
+        .module-container {
+            position: relative;
             width: 80%;
             margin: auto;
             height: 95vh;
-            display: block;
+            overflow: hidden; 
         }
-        .buttons{
+
+        .morse-img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: fill;
+        }
+
+        #morse-display {
+            position: absolute;
+            top: 28%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ff3333;
+            font-family: 'Orbitron';
+            font-size: 45px;
+            letter-spacing: 5px;
+            text-shadow: 0 0 15px red;
+            z-index: 5;
+        }
+
+        #user-input {
+            position: absolute;
+            top: 55%; 
+            left: 55%;
+            transform: translate(-50%, -50%);
+            background: transparent;
+            border: none;
+            color: #001a33; 
+            font-family: 'Orbitron';
+            font-size: 35px;
+            text-align: center;
+            width: 280px;
+            outline: none;
+            z-index: 5;
+        }
+
+        #enter-btn {
+            position: absolute;
+            top: 78%;
+            left: 55%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 90px;
+            background: rgba(255, 0, 0, 0); 
+            cursor: pointer;
+            border: none;
+            z-index: 10;
+        }
+
+        .buttons {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 15px 30px;
+            padding: 40px 30px;
+            width: 80%;
+            margin: auto;
         }
-        .right{
-            visibility: hidden;
-        }
-        .btn{
-            padding: 20px;
-            width: 150px;
-            font-weight: bold;
-        }
+        .btn { padding: 20px; width: 150px; font-weight: bold; }
+        .right { visibility: hidden; }
     </style>
-    
 </head>
-
 <body>
     <div class="container-fluid">
         <h1 id="timer">5:00</h1>
-        <img src="morse_code.jpg" alt="morse" class="morse">
+
+        <div class="module-container">
+            <img src="morse_code.jpg" alt="morse" class="morse-img">
+            <div id="morse-display">.-..  ..  .</div>
+            <input type="text" id="user-input" maxlength="3" placeholder="???">
+            <button id="enter-btn" onclick="checkMorseAnswer()"></button>
+        </div>
 
         <div class="buttons">
-        <a href="Mathematics.html" class="btn btn-warning left">←</a>
-        <a href="Manual.html" class="btn btn-warning middle">MANUAL</a>
-        <button class="btn btn-warning right">→</button>
+            <a href="mathematics.html" class="btn btn-warning">←</a>
+            <a href="Manual.html" class="btn btn-warning">MANUAL</a>
+            <button class="btn btn-warning right">→</button>
         </div>
     </div>
+
     <script src="timer.js"></script>
+    <script src="morsejs.js"></script>
 </body>
 </html>
