@@ -2,32 +2,39 @@ const PILOT_RANK = 4;
 let correctAnswer = "";
 
 function generateModule() {
-    const d1 = Math.floor(Math.random() * 10);
-    const d2 = Math.floor(Math.random() * 10);
-    const d3 = Math.floor(Math.random() * 10);
-    const d4 = Math.floor(Math.random() * 10);
+    let d1 = localStorage.getItem('math_d1');
+    let d2 = localStorage.getItem('math_d2');
+    let d3 = localStorage.getItem('math_d3');
+    let d4 = localStorage.getItem('math_d4');
+
+    if (d1 === null) {
+        d1 = Math.floor(Math.random() * 10);
+        d2 = Math.floor(Math.random() * 10);
+        d3 = Math.floor(Math.random() * 10);
+        d4 = Math.floor(Math.random() * 10);
+
+        localStorage.setItem('math_d1', d1);
+        localStorage.setItem('math_d2', d2);
+        localStorage.setItem('math_d3', d3);
+        localStorage.setItem('math_d4', d4);
+    } else {
+        d1 = parseInt(d1);
+        d2 = parseInt(d2);
+        d3 = parseInt(d3);
+        d4 = parseInt(d4);
+    }
 
     const displayElement = document.getElementById('display-screen');
     if (displayElement) {
         displayElement.innerText = `${d1}${d2}${d3}${d4}`;
     }
 
-    // Rule 1: Multiply 1st digit by Pilot Rank (4)
-    // Rule 2: Add 2nd digit
+    // --- RULES ---
     let result = (d1 * PILOT_RANK) + d2;
-
-    // Rule 3: Subtract 4th digit
     result = result - d4;
-
-    // Rule 4: If result < 10, add 14
-    if (result < 10) {
-        result += 14;
-    }
-
-    // Rule 5: Multiply by the 3rd digit
+    if (result < 10) result += 14;
+    
     let finalValue = result * d3;
-
-    // Rule 6: last four digits (just add leading 0 if necessary)
     let finalStr = finalValue.toString();
     correctAnswer = finalStr.slice(-4).padStart(4, "0");
 }
@@ -37,21 +44,22 @@ function checkAnswer() {
     const userInput = inputField.value;
 
     if (userInput === correctAnswer) {
-        localStorage.setItem('mathModuleSolved', 'true');
+        localStorage.setItem('mathModuleSolved', 'true'); //
 
-        alert("✔️ MATH MODULE STABILIZED. Proceed to remaining modules.");
-        
+        alert("✔️ MATH MODULE STABILIZED.");
         inputField.disabled = true;
         inputField.style.cursor = "not-allowed";
-        inputField.style.backgroundColor = "rgba(0, 255, 0, 0.1)";
         
-        document.getElementById('display-screen').innerText = "SAFE";
-        document.getElementById('display-screen').style.color = "#00FF00";
+        const display = document.getElementById('display-screen');
+        display.innerText = "SAFE";
+        display.style.color = "#00FF00";
 
+        if (typeof checkWinCondition === "function") {
+            checkWinCondition();
+        }
     } else {
-        alert("❌ DISCREPANCY!");
+        alert("❌ STRIKE!");
         inputField.value = ""; 
-        
         if (typeof addStrike === "function") {
             addStrike();
         }
@@ -59,12 +67,11 @@ function checkAnswer() {
 }
 
 window.onload = function() {
-    const isSolved = localStorage.getItem('mathModuleSolved');
+    const isSolved = localStorage.getItem('mathModuleSolved'); //
 
     if (isSolved === 'true') {
         const display = document.getElementById('display-screen');
         const input = document.getElementById('user-input');
-        
         display.innerText = "SAFE";
         display.style.color = "#00FF00";
         input.disabled = true;
