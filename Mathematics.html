@@ -5,55 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Uranium Fever</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
 
     <style>
-        body{
+        body {
             background-color: black;
+            margin: 0;
         }
-        .container-fluid{
-            position: relative;
-        }
-        h1{
+        h1 {
             text-align: center;
             color: white;
             font-family: 'Orbitron';
             font-size: 45px;
+            margin-top: 20px;
         }
-        .math{
+        .module-container {
+            position: relative;
             width: 80%;
             margin: auto;
             height: 95vh;
-            display: block;
         }
-        .buttons{
+        .math {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: fill;
+        }
+        #display-screen {
+            position: absolute;
+            top: 25%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00FF00;
+            font-family: 'Orbitron';
+            font-size: 50px;
+            letter-spacing: 15px;
+        }
+        #user-input {
+            position: absolute;
+            top: 53%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: transparent;
+            border: none;
+            color: white;
+            font-family: 'Orbitron';
+            font-size: 50px;
+            text-align: center;
+            width: 300px;
+            outline: none;
+        }
+        #submit-btn {
+            position: absolute;
+            bottom: 18%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 80px;
+            background: rgba(0,0,0,0);
+            cursor: pointer;
+            border: none;
+        }
+        .buttons {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px 30px;
         }
-        .btn{
+        .btn {
             padding: 20px;
             width: 150px;
             font-weight: bold;
         }
     </style>
-    
 </head>
 
 <body>
     <div class="container-fluid">
         <h1 id="timer">5:00</h1>
-        <img src="mathematics.jpg" alt="math" class="math">
+
+        <div class="module-container">
+            <img src="mathematics.jpg" alt="math" class="math">
+            <div id="display-screen">----</div>
+            <input type="text" id="user-input" maxlength="4" placeholder="0000">
+            <button id="submit-btn" onclick="checkAnswer()"></button>
+        </div>
 
         <div class="buttons">
-        <a href="Wires.html" class="btn btn-warning left">←</a>
-        <a href="Manual.html" class="btn btn-warning middle">MANUAL</a>
-        <a href="Morse-Code.html" class="btn btn-warning right">→></a>
+            <a href="Wires.html" class="btn btn-warning left">←</a>
+            <a href="Manual.html" class="btn btn-warning middle">MANUAL</a>
+            <a href="Morse-Code.html" class="btn btn-warning right">→</a>
         </div>
     </div>
+
     <script src="timer.js"></script>
+    <script src="mathjs.js"></script>
 </body>
 </html>
