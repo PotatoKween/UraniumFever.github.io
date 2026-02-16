@@ -1,33 +1,51 @@
-const TOTAL_TIME = 5 * 60;
+let remaining = parseInt(localStorage.getItem('timerRemaining'));
+let strikes = parseInt(localStorage.getItem('strikes')) || 0;
 
-let startTime = localStorage.getItem('timerStart');
-
-if (!startTime || Date.now() - parseInt(startTime) > TOTAL_TIME * 1000) {
-    startTime = Date.now();
-    localStorage.setItem('timerStart', startTime);
-} else {
-    startTime = parseInt(startTime);
+if (isNaN(remaining) || remaining <= 0) {
+    remaining = 5 * 60;
+    strikes = 0;        
+    localStorage.setItem('strikes', 0);
 }
 
-const time = document.getElementById('timer');
+const timeDisplay = document.getElementById('timer');
 
 function updateTimer() {
-    const now = Date.now();
-    const elapsed = Math.floor((now - startTime) / 1000);
-    let remaining = TOTAL_TIME - elapsed;
+    let penalty = 1;
+    if (strikes === 1) penalty = 2;
+    if (strikes >= 2) penalty = 3;
+
+    remaining -= penalty;
+
+    localStorage.setItem('timerRemaining', remaining);
 
     if (remaining <= 0) {
         remaining = 0;
-        time.innerText = "00:00";
         clearInterval(timerInterval);
-        alert("BOOM");
+        timeDisplay.innerText = "00:00";
+        
+        localStorage.clear(); 
+        alert("BOOM!");
         return;
     }
 
     const minutes = String(Math.floor(remaining / 60)).padStart(2, '0');
     const seconds = String(remaining % 60).padStart(2, '0');
-    time.innerText = `${minutes}:${seconds}`;
+    timeDisplay.innerText = `${minutes}:${seconds}`;
 }
 
 const timerInterval = setInterval(updateTimer, 1000);
-updateTimer();
+
+const minutesStart = String(Math.floor(remaining / 60)).padStart(2, '0');
+const secondsStart = String(remaining % 60).padStart(2, '0');
+timeDisplay.innerText = `${minutesStart}:${secondsStart}`;
+
+function addStrike() {
+    strikes++;
+    localStorage.setItem('strikes', strikes);
+    
+    if (strikes >= 3) {
+        alert("GAME OVER: 3 STRIKES");
+        localStorage.clear();
+        location.reload();
+    }
+}
