@@ -8,7 +8,7 @@ let strikes = parseInt(localStorage.getItem('strikes')) || 0;
 
 
 if (isNaN(remaining) || remaining <= 0) {
-    remaining = 5 * 60; 
+    remaining = 2 * 60; 
     strikes = 0;
     localStorage.setItem('strikes', 0);
     localStorage.setItem('timerRemaining', remaining);
@@ -92,3 +92,4 @@ function showEndScreen(message, textColor) {
 
 const timerInterval = setInterval(updateTimer, 1000);
 window.addEventListener('load', checkWinCondition);
+
